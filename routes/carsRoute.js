@@ -18,4 +18,19 @@ router.get('/', async (req, res) => {
 	}
 });
 
+// POST
+// add a car to database
+router.post('/', async (req, res) => {
+	try{
+		const newCarData = req.body;
+		const [id] = await db('cars').insert(newCarData);
+		const newCarEntry = await db('cars').where('id', id).first();
+
+		res.status(201).json(newCarEntry);
+	} catch (error) {
+		console.log('Post error', error);
+		res.status(500).json({message: 'Failed to store data'});
+	}
+});
+
 module.exports = router;

@@ -11,6 +11,9 @@ module.exports = {
 		useNullAsDefault: true,
 		migrations: {
 			directory: './data/migrations'
+		},
+		seeds: {
+			directory: './data/seeds'
 		}
   },
 
@@ -47,3 +50,11 @@ module.exports = {
   }
 
 };
+
+// RULE: EVERY SCHEMA CHANGE NEEDS A NEW MIGRATION
+// npx knex init
+// npx knex migrate:make <name of data table (cars_table)>
+// npx knex migrate:latest
+// npx knex migrate:rollback (to move back one update)
+// npx knex seed:make <nameOfSeed (001_cars)>
+// npx knex seed:run
